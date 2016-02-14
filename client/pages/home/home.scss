@@ -2,25 +2,15 @@
 // Home Styles
 //----------------------------------------------------------------------------------------------------------------------
 
-#home {
-    .news-article {
-        h1 {
-            font-size: 20px;
-            border-bottom: 1px solid #eee;
-            margin-bottom: 10px;
-        }
 
-        h2 {
-            margin-top: 0;
-            font-size: 16px;
-        }
-
-        h3, h4, h5, h6 {
-            margin-top: 0;
-            font-size: 14px;
-            color: #555;
-        }
-    }
+#game {
+    position:absolute;
+    margin: 0px;
+    padding: 0px;
+    left:20px;
+    top:64px;
+    right:0px;
+    bottom:0px;
 }
 
 //----------------------------------------------------------------------------------------------------------------------

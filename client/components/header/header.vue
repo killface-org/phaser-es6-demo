@@ -6,7 +6,7 @@
         <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
             <a class="navbar-brand" v-link="{ path: '/' }">
                 <i class="fa fa-globe text-primary"></i>
-                VueSeed
+                Phaser.IO Demo
             </a>
             <ul class="nav navbar-nav">
                 <li class="nav-item">
