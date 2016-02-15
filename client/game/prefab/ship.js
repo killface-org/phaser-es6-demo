@@ -1,7 +1,11 @@
+import Weapon from './weapon.js';
+
 class Ship {
     constructor(game,x, y) {
         this.game = game;
         this.sprite = this.game.add.sprite(x, y,'ship');
+        this.sprite.texture.baseTexture.scaleMode = PIXI.scaleModes.NEAREST;
+        this.weapon = new Weapon(this.game);
         this.setupShip();
     }
     setupShip() {
@@ -10,7 +14,7 @@ class Ship {
         this.MAX_SPEED = 250; // pixels/second
         this.DRAG = 50; // pixels/second
 
-        this.sprite.scale.setTo(0.25,0.25);
+        this.sprite.scale.setTo(0.125,0.125);
         this.sprite.anchor.setTo(0.5, 0.5);
         this.sprite.angle = -90; // Point the ship up
         this.game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
@@ -52,15 +56,29 @@ class Ship {
 
             // Show the frame from the spritesheet with the engine on
             this.sprite.frame = 1;
-        } else {
+        }
+        else if (gameState.downInputIsActive()) {
+            // If the UP key is down, thrust
+            // Calculate acceleration vector based on this.angle and this.ACCELERATION
+            this.sprite.body.acceleration.x = Math.cos(this.sprite.rotation) * this.ACCELERATION * -1;
+            this.sprite.body.acceleration.y = Math.sin(this.sprite.rotation) * this.ACCELERATION * -1;
+
+            // Show the frame from the spritesheet with the engine on
+            this.sprite.frame = 1;
+        }
+        else
+        {
             // Otherwise, stop thrusting
             this.sprite.body.acceleration.setTo(0, 0);
 
             // Show the frame from the spritesheet with the engine off
             this.sprite.frame = 0;
+
         }
 
-
+        if (gameState.spaceIsActive()) {
+            this.weapon.fire(this.sprite);
+        }
 
     }
 }
