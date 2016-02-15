@@ -1,8 +1,8 @@
 import Bullet from './bullet.js';
 
 class WeaponSingleBullet extends Phaser.Group {
-    constructor(game) {
-        super(game, game.world, 'Single Bullet', false, true, Phaser.Physics.ARCADE);
+    constructor(game, ship) {
+        super(game, ship.bullets, 'Single Bullet', false, true, Phaser.Physics.ARCADE);
         this.game = game;
         this.nextFire = 0;
         this.bulletSpeed = 600;
@@ -17,8 +17,8 @@ class WeaponSingleBullet extends Phaser.Group {
     }
 
     fire(source) {
-        var x = source.x + (Math.cos(Phaser.Math.degToRad(source.angle)) * 75);
-        var y = source.y + (Math.sin(Phaser.Math.degToRad(source.angle)) * 75);
+        var x = source.x + (Math.cos(source.rotation) * 75);
+        var y = source.y + (Math.sin(source.rotation) * 75);
         if (this.nextFire >= this.fireRate) {
             this.getFirstExists(false).fire(x, y, source.angle, this.bulletSpeed, 0, 0);
             this.nextFire = 0;

@@ -3,9 +3,10 @@ import Weapon from './weapon.js';
 class Ship {
     constructor(game,x, y) {
         this.game = game;
+        this.bullets = this.game.add.group();
         this.sprite = this.game.add.sprite(x, y,'ship');
         this.sprite.texture.baseTexture.scaleMode = PIXI.scaleModes.NEAREST;
-        this.weapon = new Weapon(this.game);
+        this.weapon = new Weapon(this.game, this);
         this.setupShip();
     }
     setupShip() {
